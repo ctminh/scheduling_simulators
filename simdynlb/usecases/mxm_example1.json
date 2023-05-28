@@ -8,7 +8,7 @@
         "num_iterations": 1,
         "num_process": 8,
         "num_slowdown_rank": 2,
-        "num_tasks_per_rank": 100,
+        "num_tasks_per_rank": 20,
         "slowdown_scale": 0.2
     }
 }

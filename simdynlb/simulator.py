@@ -143,24 +143,21 @@ def simulate(local_queues, slowdown_procs, slowdown_scales, iter, clock_rate,
         clock += 1
 
         # --------------------------------------------------------
-        # checking imbalance status
-        # --------------------------------------------------------
-        # Rimb = check_imbalance_status(clock, copy_local_queues, arr_being_exe_tasks)
-
-        # --------------------------------------------------------
         # balancing strategies
         # --------------------------------------------------------
-        # work-stealing
-        queue_status_res = check_queue_status(clock, num_procs, copy_local_queues, arr_num_tasks_before_execution)
+        # 1. work-stealing
+        queue_status_res = check_queue_status(clock, num_procs, copy_local_queues)
         
         exchange_steal_request(clock, queue_status_res, arr_steal_request_msg, arr_steal_accept_msg)
 
         recv_steal_accept(clock, queue_status_res, arr_steal_request_msg, arr_steal_accept_msg)
 
-        steal_tasks(clock, copy_local_queues, queue_status_res, arr_steal_request_msg, arr_steal_accept_msg,
-                    iter, cost_migration_delay, slowdown_procs, slowdown_scales, clock_rate, noise)
+        # steal_tasks(clock, copy_local_queues, queue_status_res, arr_steal_request_msg, arr_steal_accept_msg,
+        #             iter, cost_migration_delay, slowdown_procs, slowdown_scales, clock_rate, noise)
 
-        # reactive task offloading
+        # 2. reactive task offloading
+        # Rimb = check_imbalance_status(clock, copy_local_queues, arr_being_exe_tasks)
+
         # react_task_offloading(clock, num_procs, Rimb, copy_local_queues,
         #                         arr_num_tasks_before_execution, arr_victim_offloader)
 
